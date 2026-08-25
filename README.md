@@ -12,7 +12,7 @@ Highlights:
 
 - per-finger bilateral home-row mods in Ctrl, Alt, GUI, Shift order
   (pinky-to-index), mirrored on both hands;
-- sticky Shift plus dual Backspace/Space NavNum thumb keys;
+- Backspace, momentary NavNum, Tab/Symbols, and Space/NavNum thumb keys;
 - a shared navigation and numpad layer;
 - Selenium-style Symbols and Fn/Media layers; and
 - Caps Word, Escape, Tab, and Enter combos.

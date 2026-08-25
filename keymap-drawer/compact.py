@@ -48,7 +48,6 @@ HOLD_LABELS = {
     "⌥": "⌥",
     "⌖": "⌖",
     "#": "#",
-    "sticky": "⇧•",
 }
 
 SHORT_LABELS = {
@@ -160,10 +159,6 @@ def draw_key(position: dict, center: tuple[float, float, float], index: int, lay
 
     base_value = layers["Base"][index]
     base_tap, base_hold = key_label(base_value)
-    if base_hold == "sticky":
-        out.append('<use href="#shift" x="-25" y="-39" width="50" height="50" class="sticky-shift-icon"/>')
-        out.append(svg_text(0, 30, "MAJ. 1×", "sticky-shift-label", size=11.5))
-        base_tap, base_hold = "", ""
     base_y = -14 if base_hold else 7
     if base_tap in BASE_ICONS:
         icon, width, height = BASE_ICONS[base_tap]
@@ -304,15 +299,6 @@ def mock_key(center_x: float, center_y: float) -> str:
 </g>'''
 
 
-def sticky_callout(center: tuple[float, float, float]) -> str:
-    """Keep the one-shot behavior explanation beside the physical key."""
-    x, y, rotation = center
-    return f'''<g transform="translate({x:g} {y:g}) rotate({rotation:g})" class="sticky-callout">
-{svg_text(0, 73, "Une frappe active", "", size=10.5)}
-{svg_text(0, 88, "la prochaine lettre", "", size=10.5)}
-</g>'''
-
-
 def caps_word_callout(center: tuple[float, float, float]) -> str:
     """Explain the paired marker once, beside the Z half of the combo."""
     x, y, _ = center
@@ -402,7 +388,6 @@ def main() -> None:
   <symbol id="backspace" viewBox="0 0 44 32"><path d="M16 6h22v20H16L6 16 16 6Zm6 6 10 8m0-8-10 8"/></symbol>
   <symbol id="space" viewBox="0 0 44 28"><path d="M5 8v12h34V8"/></symbol>
   <symbol id="tab" viewBox="0 0 44 32"><path d="M6 6v20m32-20v20M11 16h20m-7-7 7 7-7 7"/></symbol>
-  <symbol id="shift" viewBox="0 0 50 50"><path d="m25 4 18 19H34v19H16V23H7L25 4Z"/></symbol>
 </defs>
 <style>
   svg {{ font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace; fill: #f8fafc; background: #181d27; }}
@@ -414,8 +399,6 @@ def main() -> None:
   .core-shift {{ fill: #c084fc; font-family: system-ui,sans-serif; font-weight: 800; }}
   .base-icon, .layer-icon, defs symbol[id^="arrow"] path, defs symbol[id^="page"] path {{ fill: none; stroke: currentColor; stroke-width: 2.25; stroke-linecap: round; stroke-linejoin: round; }}
   .base-icon {{ color: #f8fafc; stroke-width: 2.5; }}
-  .sticky-shift-icon {{ fill: #f0abfc; color: #f0abfc; }}
-  .sticky-shift-label {{ fill: #f0abfc; font-family: system-ui,sans-serif; font-weight: 800; letter-spacing: 1.4px; }}
   .key rect.hold-badge, .mock-key rect.hold-badge {{ fill: #111827; stroke: #94a3b8; stroke-width: 1.7; }}
   .key rect.hold-badge.nav-hold {{ stroke: #60a5fa; }}
   .key rect.hold-badge.symbol-hold {{ stroke: #fbbf24; }}
@@ -435,7 +418,6 @@ def main() -> None:
   .legend-help {{ fill: #aab5c3; font-family: system-ui,sans-serif; }}
   .legend-glyph {{ fill: #e2e8f0; font-family: system-ui,sans-serif; font-weight: 700; }}
   .legend-name {{ fill: #aab5c3; font-family: system-ui,sans-serif; font-weight: 700; letter-spacing: .7px; }}
-  .sticky-callout {{ fill: #d8a8df; font-family: system-ui,sans-serif; font-weight: 600; }}
   .mock-key rect.combo-sample-pill {{ fill: #111827; stroke: #38bdf8; stroke-width: 2.2; stroke-linecap: round; stroke-dasharray: 1 6; }}
   .combo-help {{ fill: #b3bdc9; font-family: system-ui,sans-serif; font-weight: 600; }}
   .combo-word {{ fill: #dbe4ee; font-weight: 750; }}
@@ -463,7 +445,6 @@ def main() -> None:
 <text x="36" y="29" class="title">DokoDemo · QWERTY</text>
 {keys}
 {combo_lines}
-{sticky_callout(centers[30])}
 {caps_word_callout(centers[20])}
 {mock_key(center_x, 160)}
 </svg>
