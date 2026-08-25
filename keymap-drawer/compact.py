@@ -272,7 +272,6 @@ def mock_key(center_x: float, center_y: float) -> str:
 <g class="mock-pill symbols"><rect x="-130" y="-78" width="96" height="25" rx="12.5"/>{svg_text(-82, -65, "#  SYMBOLES", "", size=10.5)}</g>
 <g class="mock-pill navnum"><rect x="34" y="-78" width="96" height="25" rx="12.5"/><use href="#navpad" x="45" y="-73" width="16" height="16"/>{svg_text(67, -65, "NAVNUM", "", anchor="start", size=11.5)}</g>
 <g class="mock-pill fn"><rect x="-101" y="53" width="66" height="25" rx="12.5"/>{svg_text(-68, 66, "fn", "", size=13)}</g>
-<g class="mock-pill gaming"><rect x="35" y="53" width="96" height="25" rx="12.5"/><use href="#gamepad" x="45" y="56" width="20" height="20"/>{svg_text(70, 66, "JEU", "", anchor="start", size=10.5)}</g>
 <g class="legend-anatomy">
 {svg_text(0, 92, "haut = Maj.  ·  centre = frappe  ·  pastille = maintien", "legend-help", size=10.5)}
 </g>
@@ -318,28 +317,6 @@ def caps_word_callout(center: tuple[float, float, float]) -> str:
     """Explain the paired marker once, beside the Z half of the combo."""
     x, y, _ = center
     return svg_text(x, y + 72, "CW = MOTS EN MAJ.", "caps-word-callout", size=12.5)
-
-
-def gaming_callout(target_x: float, target_y: float, width: float) -> str:
-    """Explain the gaming layer once and point back to its physical combo."""
-    x = width - 315
-    y = 524
-    return f'''<g class="gaming-callout">
-<path d="M {target_x - 14:g} {target_y + 10:g} L {x + 24:g} {y - 5:g}"/>
-<use href="#gamepad" x="{x:g}" y="{y - 11:g}" width="25" height="25"/>
-{svg_text(x + 34, y + 1, "JEU", "gaming-title", anchor="start", size=14)}
-{svg_text(x + 34, y + 24, "bascule : . + / en combo", "gaming-copy", anchor="start", size=14)}
-{svg_text(x + 34, y + 45, "QWERTY · gauche sans délai", "gaming-copy", anchor="start", size=14)}
-{svg_text(x + 34, y + 66, "pouces gauches : ⇧ + Espace", "gaming-copy", anchor="start", size=14)}
-</g>'''
-
-
-def icon_badge(x: float, y: float, icon: str, css_class: str, width: float = 36) -> str:
-    """Draw a standalone icon pill without implying extra key connections."""
-    return f'''<g class="combo-bridge {css_class}">
-<rect x="{x - width / 2:g}" y="{y - 14:g}" width="{width:g}" height="28" rx="14"/>
-<use href="#{icon}" x="{x - 10:g}" y="{y - 10:g}" width="20" height="20" class="{css_class}"/>
-</g>'''
 
 
 def adjacent_combo(
@@ -398,16 +375,11 @@ def main() -> None:
         draw_key(position, centers[index], index, layers)
         for index, position in enumerate(positions)
     )
-    gaming_offset = 18
-    gaming_x = (centers[28][0] + centers[29][0]) / 2
-    gaming_y = (centers[28][1] + centers[29][1]) / 2 + gaming_offset
     combo_lines = "\n".join(
         (
         adjacent_combo(centers[1], centers[2], "⎋", "combo-default", width=38, label_size=21),
-        adjacent_combo(centers[11], centers[12], "⇥", "combo-default", width=38, label_size=21),
-        adjacent_combo(centers[27], centers[28], "↵", "combo-default", width=38, label_size=22),
+        adjacent_combo(centers[21], centers[22], "⇥", "combo-default", width=38, label_size=21),
         adjacent_combo(centers[17], centers[18], "↵", "combo-default", width=38, label_size=22),
-            icon_badge(gaming_x, gaming_y, "gamepad", "gaming-combo"),
             adjacent_combo(centers[30], centers[31], "fn", "fn-combo", width=48, label_size=13),
             adjacent_combo(centers[32], centers[33], "fn", "fn-combo", width=48, label_size=13),
         )
@@ -419,7 +391,6 @@ def main() -> None:
   <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000" flood-opacity=".28"/></filter>
   <symbol id="bluetooth" viewBox="0 0 256 512"><path fill="currentColor" d="M164.9 260L257.5 156.7 111.6 0 111.6 206.3 25.4 120.2-6 151.6 102.1 260-6 368.4 25.4 399.8 111.6 313.7 114.3 512 262.8 363.4 164.9 260zm40.9-103-50 50-.3-100.3 50.3 50.3zm-50 156 50 50-50.3 50.3.3-100.3z"/></symbol>
   <symbol id="navpad" viewBox="0 0 24 24"><path fill="currentColor" d="M12 1.5 7.5 7h9L12 1.5ZM12 22.5 16.5 17h-9l4.5 5.5ZM1.5 12 7 16.5v-9L1.5 12ZM22.5 12 17 7.5v9l5.5-4.5Z"/><circle cx="12" cy="12" r="2.2" fill="currentColor"/></symbol>
-  <symbol id="gamepad" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M8 8h8a5 5 0 0 1 4.7 3.3l1.1 3.1a3 3 0 0 1-5.2 2.8L15 15H9l-1.6 2.2a3 3 0 0 1-5.2-2.8l1.1-3.1A5 5 0 0 1 8 8Z M7 11v4 M5 13h4 M16.5 11.5h.01 M18.5 13.5h.01"/></symbol>
   <symbol id="arrow-up" viewBox="0 0 24 24"><path d="M12 20V5M6.5 10.5 12 5l5.5 5.5"/></symbol>
   <symbol id="arrow-down" viewBox="0 0 24 24"><path d="M12 4v15m-5.5-5.5L12 19l5.5-5.5"/></symbol>
   <symbol id="arrow-left" viewBox="0 0 24 24"><path d="M20 12H5m5.5-5.5L5 12l5.5 5.5"/></symbol>
@@ -454,14 +425,13 @@ def main() -> None:
   .symbol-at {{ font-family: system-ui,sans-serif; font-weight: 750; }}
   .navnum {{ fill: #60a5fa; color: #60a5fa; font-weight: 750; }}
   .fn {{ fill: #86b99c; color: #86b99c; font-family: system-ui,sans-serif; font-weight: 650; opacity: .76; }}
-  .gaming {{ fill: #a98ac2; color: #a98ac2; font-weight: 550; }}
   .title {{ font: 750 27px system-ui,sans-serif; letter-spacing: -.3px; }}
   .subtitle {{ font: 12px system-ui,sans-serif; fill: #9aa7b7; letter-spacing: .6px; }}
   .mock-cap {{ fill: #222a35; stroke: #7b899b; stroke-width: 1.8; filter: url(#shadow); }}
   .mock-base {{ fill: #f8fafc; font-weight: 750; }}
   .mock-pill rect {{ fill: #181d27; stroke: currentColor; stroke-width: 1.5; }}
   .mock-pill text {{ fill: currentColor; font-family: system-ui,sans-serif; font-weight: 700; }}
-  .mock-pill.fn, .mock-pill.gaming {{ opacity: .78; }}
+  .mock-pill.fn {{ opacity: .78; }}
   .legend-help {{ fill: #aab5c3; font-family: system-ui,sans-serif; }}
   .legend-glyph {{ fill: #e2e8f0; font-family: system-ui,sans-serif; font-weight: 700; }}
   .legend-name {{ fill: #aab5c3; font-family: system-ui,sans-serif; font-weight: 700; letter-spacing: .7px; }}
@@ -482,17 +452,11 @@ def main() -> None:
   .caps-word-callout {{ fill: #9ccfe6; font-family: system-ui,sans-serif; font-weight: 650; letter-spacing: .2px; }}
   .caps-key-help {{ fill: #94a3b8; font-family: system-ui,sans-serif; }}
   .fn-activation {{ fill: #9bc9ac; font-family: system-ui,sans-serif; font-weight: 650; }}
-  .gaming-callout {{ color: #a98ac2; }}
-  .gaming-callout path {{ fill: none; stroke: #82669a; stroke-width: 1.8; stroke-linecap: round; }}
-  .gaming-title {{ fill: #a98ac2; font-family: system-ui,sans-serif; font-weight: 750; letter-spacing: .8px; }}
-  .gaming-copy {{ fill: #bac2cc; font-family: system-ui,sans-serif; }}
   .combo-bridge path {{ fill: none; stroke-width: 3.4; stroke-linecap: round; stroke-dasharray: 1 8; }}
   .combo-bridge rect {{ fill: #111827; stroke-width: 2.2; stroke-dasharray: 1 5.5; stroke-linecap: round; }}
   .combo-default path, .combo-default rect {{ stroke: #38bdf8; }}
-  .gaming-combo path, .gaming-combo rect {{ stroke: #a98ac2; }}
   .fn-combo path, .fn-combo rect {{ stroke: #78a98a; }}
   .fn-combo path, .fn-combo rect {{ stroke-dasharray: none; }}
-  .gaming-combo {{ color: #d8b4fe; }}
   .combo-label {{ fill: #f8fafc; font-family: system-ui,sans-serif; font-weight: 750; letter-spacing: .15px; }}
 </style>
 <rect class="background" width="100%" height="100%" rx="14"/>
@@ -502,7 +466,6 @@ def main() -> None:
 {sticky_callout(centers[30])}
 {caps_word_callout(centers[20])}
 {mock_key(center_x, 160)}
-{gaming_callout(gaming_x, gaming_y, width)}
 </svg>
 '''
     output_path.write_text(svg, encoding="utf-8")

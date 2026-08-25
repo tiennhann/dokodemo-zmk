@@ -14,9 +14,8 @@ Highlights:
   (pinky-to-index), mirrored on both hands;
 - sticky Shift plus dual Backspace/Space NavNum thumb keys;
 - a shared navigation and numpad layer;
-- Selenium-style Symbols and Fn/Media layers;
-- Caps Word, Escape, and Enter combos; and
-- a toggleable QWERTY gaming layer with dedicated left-thumb Space.
+- Selenium-style Symbols and Fn/Media layers; and
+- Caps Word, Escape, Tab, and Enter combos.
 
 ## Detailed keymap
 

@@ -33,7 +33,7 @@ jobs:
       - name: Parse keymap
         run: |
           keymap -c keymap-drawer/config.yaml parse -z config/dokodemo.keymap \
-            -l Base Symbols NavNum Fn Gaming -o keymap-drawer/keymap.yaml
+            -l Base Symbols NavNum Fn -o keymap-drawer/keymap.yaml
           python3 keymap-drawer/format.py keymap-drawer/keymap.yaml
 
       - name: Draw full keymap
