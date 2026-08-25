@@ -403,8 +403,10 @@ def main() -> None:
     gaming_y = (centers[28][1] + centers[29][1]) / 2 + gaming_offset
     combo_lines = "\n".join(
         (
-            adjacent_combo(centers[21], centers[22], "⎋", "combo-default", width=38, label_size=21),
-            adjacent_combo(centers[27], centers[28], "↵", "combo-default", width=38, label_size=22),
+        adjacent_combo(centers[1], centers[2], "⎋", "combo-default", width=38, label_size=21),
+        adjacent_combo(centers[11], centers[12], "⇥", "combo-default", width=38, label_size=21),
+        adjacent_combo(centers[27], centers[28], "↵", "combo-default", width=38, label_size=22),
+        adjacent_combo(centers[17], centers[18], "↵", "combo-default", width=38, label_size=22),
             icon_badge(gaming_x, gaming_y, "gamepad", "gaming-combo"),
             adjacent_combo(centers[30], centers[31], "fn", "fn-combo", width=48, label_size=13),
             adjacent_combo(centers[32], centers[33], "fn", "fn-combo", width=48, label_size=13),

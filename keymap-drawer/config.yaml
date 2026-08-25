@@ -220,7 +220,13 @@ parse_config:
     combo_escape:
       k: "⎋"
       l: [Base]
+    combo_tab:
+      k: "⇥"
+      l: [Base]
     combo_enter:
+      k: "⏎"
+      l: [Base]
+    combo_enter_home:
       k: "⏎"
       l: [Base]
     combo_gaming_on:
