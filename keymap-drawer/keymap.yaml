@@ -45,11 +45,8 @@ layers:
   - t: /
     s: '?'
   - t: ⌫
-    h: ⌖
-    type: special trigger-nav
-  - t: ⇧
-    h: sticky
     type: special
+  - ⌖
   - t: ⇥
     h: '#'
     type: special trigger-symbols
@@ -135,10 +132,11 @@ layers:
   - '2'
   - '3'
   - .
-  - type: held
+  - t: ▽
+    type: trans
   - t: ⌦
     h: fn
-    type: special fn-label trigger-fn
+    type: held special fn-label
   - t: ⌃⌥◆⇧⎵
     h: fn
     type: special fn-label trigger-fn
@@ -185,7 +183,8 @@ layers:
   - ♪−
   - ☀−
   - Insert
-  - type: held
+  - t: ▽
+    type: trans
   - t: Boot
     type: held
   - Reset
