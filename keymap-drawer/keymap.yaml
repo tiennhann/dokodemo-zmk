@@ -4,56 +4,58 @@ layers:
   Base:
   - Q
   - W
-  - F
-  - P
-  - B
-  - J
-  - L
-  - U
+  - E
+  - R
+  - T
   - Y
-  - t: ;
-    s: ':'
-  - A
-  - t: R
-    h: ⌥
-  - t: S
-    h: ⌃
-  - t: T
-    h: ◆
-  - G
-  - M
-  - t: N
-    h: ◆
-  - t: E
-    h: ⌃
-  - t: I
-    h: ⌥
+  - U
+  - I
   - O
+  - P
+  - t: A
+    h: ⌃
+  - t: S
+    h: ⌥
+  - t: D
+    h: ◆
+  - t: F
+    h: ⇧
+  - G
+  - H
+  - t: J
+    h: RSHFT
+  - t: K
+    h: ◆
+  - t: L
+    h: ⌥
+  - t: ;
+    h: ⌃
+    s: ':'
   - Z
   - X
   - C
-  - D
   - V
-  - K
-  - H
+  - B
+  - N
+  - M
   - t: ','
     s: <
   - t: .
     s: '>'
   - t: /
     s: '?'
-  - t: ⇧
-    h: sticky
-    type: special
   - t: ⌫
     h: ⌖
     type: special trigger-nav
-  - t: ⎵
-    h: ⌖
-    type: special trigger-nav
+  - t: ⇧
+    h: sticky
+    type: special
   - t: ⇥
     h: '#'
     type: special trigger-symbols
+  - t: ⎵
+    h: ⌖
+    type: special trigger-nav
   Symbols:
   - ^
   - <
@@ -89,9 +91,9 @@ layers:
     type: trans
   - t: ▽
     type: trans
+  - type: held
   - t: ▽
     type: trans
-  - type: held
   NavNum:
   - ⌃W
   - t: ↖
@@ -133,11 +135,10 @@ layers:
   - '2'
   - '3'
   - .
-  - t: ▽
-    type: trans
+  - type: held
   - t: ⌦
     h: fn
-    type: held special fn-label
+    type: special fn-label trigger-fn
   - t: ⌃⌥◆⇧⎵
     h: fn
     type: special fn-label trigger-fn
@@ -184,8 +185,7 @@ layers:
   - ♪−
   - ☀−
   - Insert
-  - t: ▽
-    type: trans
+  - type: held
   - t: Boot
     type: held
   - Reset
@@ -208,12 +208,13 @@ layers:
   - G
   - H
   - t: J
-    h: ◆
+    h: RSHFT
   - t: K
-    h: ⌃
+    h: ◆
   - t: L
     h: ⌥
-  - ;
+  - t: ;
+    h: ⌃
   - Z
   - X
   - C
