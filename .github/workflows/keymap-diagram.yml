@@ -1,0 +1,59 @@
+name: Update keymap diagrams
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "config/dokodemo.keymap"
+      - "config/dokodemo.json"
+      - "keymap-drawer/config.yaml"
+      - "keymap-drawer/format.py"
+      - "keymap-drawer/compact.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  redraw:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install keymap-drawer
+        run: pip install keymap-drawer pyyaml
+
+      - name: Install rsvg-convert
+        run: sudo apt-get update && sudo apt-get install -y librsvg2-bin
+
+      - name: Parse keymap
+        run: |
+          keymap -c keymap-drawer/config.yaml parse -z config/dokodemo.keymap \
+            -l Base Symbols NavNum Fn Gaming -o keymap-drawer/keymap.yaml
+          python3 keymap-drawer/format.py keymap-drawer/keymap.yaml
+
+      - name: Draw full keymap
+        run: |
+          keymap -c keymap-drawer/config.yaml draw -j config/dokodemo.json -l dokodemo \
+            -o keymap-drawer/keymap.svg keymap-drawer/keymap.yaml
+          python3 keymap-drawer/format.py keymap-drawer/keymap.svg
+
+      - name: Draw compact keymap
+        run: |
+          python3 keymap-drawer/compact.py keymap-drawer/keymap.yaml config/dokodemo.json \
+            keymap-drawer/keymap-compact.svg
+          rsvg-convert -w 3840 -o keymap-drawer/keymap-compact.png keymap-drawer/keymap-compact.svg
+
+      - name: Commit updated diagrams
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "docs: regenerate keymap diagrams"
+          file_pattern: >-
+            keymap-drawer/keymap.yaml
+            keymap-drawer/keymap.svg
+            keymap-drawer/keymap-compact.svg
+            keymap-drawer/keymap-compact.png

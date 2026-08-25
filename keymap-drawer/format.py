@@ -12,7 +12,7 @@ LEGEND_HEIGHT = 49
 LEGEND = """<g class="keymap-legend">
 <rect x="20" y="3" width="692" height="41" rx="6" fill="#f6f8fa" stroke="#c9cccf"/>
 <text x="30" y="17" style="font-size:11px;text-anchor:start">⌃ Ctrl · ⌥ Alt · ◆ GUI · <tspan style="fill:#9333ea;font-weight:bold">purple top = Shift output</tspan> · bottom legend = hold</text>
-<text x="30" y="35" style="font-size:11px;text-anchor:start"><tspan style="fill:#2563eb;font-weight:bold">⌖ NavNum</tspan> · <tspan style="fill:#d97706;font-weight:bold"># Symbols</tspan> · <tspan style="fill:#15803d;font-weight:bold">fn Fn</tspan> · <tspan style="fill:#7c3aed;font-weight:bold">Gaming</tspan> · both inner thumbs = Fn</text>
+<text x="30" y="35" style="font-size:11px;text-anchor:start"><tspan style="fill:#2563eb;font-weight:bold">⌖ NavNum</tspan> · <tspan style="fill:#d97706;font-weight:bold"># Symbols</tspan> · <tspan style="fill:#15803d;font-weight:bold">fn Fn</tspan> · <tspan style="fill:#7c3aed;font-weight:bold">Gaming</tspan> · outer+inner thumb (same hand) = Fn</text>
 </g>"""
 
 TRIGGER_TYPES = {
@@ -47,7 +47,7 @@ def format_yaml(path: Path) -> None:
     keymap = yaml.safe_load(path.read_text(encoding="utf-8"))
     layers = keymap.get("layers", {})
 
-    # Show the US-QWERTY host's shifted punctuation on the Colemak-DH base.
+    # Show the shifted punctuation produced by each punctuation key.
     base = layers.get("Base", [])
     for position, key in enumerate(base):
         tap = key.get("t") if isinstance(key, dict) else key

@@ -300,7 +300,7 @@ def mock_key(center_x: float, center_y: float) -> str:
 <use href="#navpad" x="51.5" y="211.5" width="15" height="15" class="navnum layer-hold-icon"/>
 {svg_text(-59, 238, "→ SYMBOLES", "layer-destination symbols", size=12)}
 {svg_text(59, 238, "→ NAVNUM", "layer-destination navnum", size=12.5)}
-<text x="0" y="260" class="layer-hold-source fn-hold-line" text-anchor="middle" font-size="10.5"><tspan>2 POUCES INTÉRIEURS →</tspan><tspan dx="4" class="fn-destination">FN</tspan></text>
+<text x="0" y="260" class="layer-hold-source fn-hold-line" text-anchor="middle" font-size="10.5"><tspan>POUCES VOISINS (MÊME MAIN) →</tspan><tspan dx="4" class="fn-destination">FN</tspan></text>
 </g>
 </g>'''
 
@@ -406,7 +406,8 @@ def main() -> None:
             adjacent_combo(centers[21], centers[22], "⎋", "combo-default", width=38, label_size=21),
             adjacent_combo(centers[27], centers[28], "↵", "combo-default", width=38, label_size=22),
             icon_badge(gaming_x, gaming_y, "gamepad", "gaming-combo"),
-            adjacent_combo(centers[31], centers[32], "fn", "fn-combo", width=48, label_size=13),
+            adjacent_combo(centers[30], centers[31], "fn", "fn-combo", width=48, label_size=13),
+            adjacent_combo(centers[32], centers[33], "fn", "fn-combo", width=48, label_size=13),
         )
     )
 
@@ -493,7 +494,7 @@ def main() -> None:
   .combo-label {{ fill: #f8fafc; font-family: system-ui,sans-serif; font-weight: 750; letter-spacing: .15px; }}
 </style>
 <rect class="background" width="100%" height="100%" rx="14"/>
-<text x="36" y="29" class="title">DokoDemo · Colemak-DH</text>
+<text x="36" y="29" class="title">DokoDemo · QWERTY</text>
 {keys}
 {combo_lines}
 {sticky_callout(centers[30])}
